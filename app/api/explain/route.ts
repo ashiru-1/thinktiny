@@ -120,9 +120,9 @@ export async function POST(request: NextRequest) {
     if (!explanations) {
       const demoExplanations = getDemoExplanations(topic);
       explanations = {
-        child: demoExplanations.child + '\n\n[Demo explanation - Add HUGGINGFACE_API_KEY for AI responses]',
-        teen: demoExplanations.teen + '\n\n[Demo explanation - Add HUGGINGFACE_API_KEY for AI responses]',
-        expert: demoExplanations.expert + '\n\n[Demo explanation - Add HUGGINGFACE_API_KEY for AI responses]',
+        child: demoExplanations.child,
+        teen: demoExplanations.teen,
+        expert: demoExplanations.expert,
       };
     }
 
