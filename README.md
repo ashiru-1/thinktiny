@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ThinkTiny - Learn Complex Topics Simply
+
+ThinkTiny is an AI-powered learning tool that explains complex topics at three different levels: 5-year-old, 15-year-old, and expert. It features a beautiful timeline interface that highlights the differences between explanations side-by-side.
+
+## Features
+
+- **Multi-Level Explanations**: Get explanations tailored for different age groups and expertise levels
+- **Timeline View**: Visual learning progression from simple to complex
+- **Side-by-Side Comparison**: Compare all three levels simultaneously
+- **Copy to Clipboard**: Easy sharing of individual explanations
+- **Modern UI**: Beautiful, responsive design with dark mode support
+- **AI-Powered**: Uses OpenAI GPT-4 for intelligent, contextual explanations
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **Icons**: Lucide React
+- **AI**: OpenAI GPT-4 API
+- **Utilities**: clsx, tailwind-merge
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- OpenAI API key
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd thinktiny
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file in the root directory:
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Input a Topic**: Paste any complex topic in the text area (e.g., "quantum physics", "machine learning", "climate change")
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Generate Explanations**: Click "Explain" or press ⌘+Enter to generate explanations
 
-## Deploy on Vercel
+3. **View Results**: 
+   - **Timeline View**: See explanations in a learning progression
+   - **Side-by-Side View**: Compare all levels simultaneously
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Copy Explanations**: Click the copy icon on any explanation to copy it to your clipboard
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+app/
+├── components/
+│   ├── TopicInput.tsx          # Topic input form
+│   ├── ExplanationDisplay.tsx  # Main display component
+│   └── LoadingSpinner.tsx      # Loading animation
+├── api/
+│   └── explain/
+│       └── route.ts           # OpenAI API integration
+├── lib/
+│   └── utils.ts              # Utility functions
+├── globals.css               # Global styles
+├── layout.tsx                # Root layout
+└── page.tsx                  # Main page
+```
+
+## API Integration
+
+The application uses OpenAI's GPT-4 model to generate explanations. The API route (`/api/explain`) takes a topic and returns three explanations:
+
+```typescript
+{
+  child: string;   // 5-year-old level explanation
+  teen: string;    // 15-year-old level explanation  
+  expert: string;  // Expert level explanation
+}
+```
+
+## Customization
+
+### Adding New Explanation Levels
+
+To add more explanation levels, modify the `levels` array in `ExplanationDisplay.tsx` and update the API prompt in `route.ts`.
+
+### Styling
+
+The application uses Tailwind CSS with a custom color scheme. You can modify the colors in the `getColorClasses` and `getIconColor` functions in `ExplanationDisplay.tsx`.
+
+### AI Model
+
+To use a different AI model, update the `model` parameter in the OpenAI API call in `route.ts`.
+
+## Deployment
+
+The application can be deployed to Vercel, Netlify, or any other Next.js-compatible platform.
+
+### Vercel Deployment
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add your `OPENAI_API_KEY` environment variable in Vercel
+4. Deploy!
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Acknowledgments
+
+- Built with Next.js and OpenAI
+- Icons from Lucide React
+- Styling with Tailwind CSS
